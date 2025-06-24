@@ -1,0 +1,6 @@
+<button (click)="toggleDropdown()">Toggle Dropdown</button>
+<div *ngIf="isDropdownOpen" class="dropdown">
+    <ul>
+        <li *ngFor="let item of dropdownItems">{{ dropdownItems }}</li>
+    </ul>
+</div>

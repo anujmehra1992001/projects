@@ -1,0 +1,45 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="container">
+      <h1>ANUJ MEHRA</h1>
+      <img
+        src="assets/images/ANUJ MEHRA.jpg"
+        alt="Angular logo"
+        width="32"
+        height="32"
+      />
+
+      <h2>dashboard</h2>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/dashboard/reports" routerLinkActive="active"
+            >reports</a
+          >
+        </li>
+        <li>
+          <a routerLink="/dashboard/projects" routerLinkActive="active"
+            >projects</a
+          >
+        </li>
+        <a routerLink="/dashboard/employee" routerLinkActive="active">
+          employee
+        </a>
+
+        <li>
+          <a routerLink="/dashboard/layots" routerLinkActive="active">layots</a>
+        </li>
+      </ul>
+    </nav><object data="" type=""></object>
+  </aside>
+  <section class="main-content">
+    <header>
+      <h1>Welcome to dashboard</h1>
+      <button (click)="logout()">logout</button>
+    </header>
+    <div class="content">
+      <router-outlet> </router-outlet>
+    </div>
+  </section>
+</div>

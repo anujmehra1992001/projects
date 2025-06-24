@@ -1,0 +1,147 @@
+<style>
+    .title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #7517b9;
+        background: linear-gradient(to right, #8e2de2, #9c6dfb);
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: fadeIn 2s ease-in-out;
+    }
+    
+    .input-select {
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        o font-size: 15px;
+        min-width: 200px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .input-select:focus {
+        border-color: #8e2de2;
+        outline: none;
+        box-shadow: 0 0 6px rgba(142, 45, 226, 0.4);
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: linear-gradient(to right, #d473e1, #ff70e0);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        animation: fadeIn 0.8s ease-in-out;
+    }
+    
+    thead {
+        background-color: #8e2de2;
+        color: white;
+        text-align: left;
+    }
+    
+    th,
+    td {
+        padding: 14px 18px;
+    }
+    
+    tr:hover {
+        background-color: #d8d5fb;
+        transition: background-color 0.3s ease;
+    }
+    
+    .pagination-button {
+        padding: 8px 16px;
+        font-size: 14px;
+        background-color: #9a6ef1;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .pagination-button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+    .pagination {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    .search-input:focus,
+    .sort-select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    }
+    
+    .option {
+        background-color: rgb(144, 209, 78);
+        color: #d8d5fb;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<p class="title">Employee List and Salary</p>
+
+<div style="
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+  ">
+    <input type="text" [(ngModel)]="searchText" (input)="applyFilters()" placeholder="Search by name..." class="input-select" />
+
+    <select [(ngModel)]="sortOption" (change)="sortEmployees()" class="input-select">
+    <option value="">Sort by</option>
+    <option value="nameAsc">Name Ascending</option>
+    <option value="nameDesc">Name Descending</option>
+    <option value="salaryAs">Salary Low to High</option>
+    <option value="salaryDesc">Salary High to Low</option>
+  </select>
+</div>
+
+<table *ngIf="filteredEmployees.length > 0">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Employee Name</th>
+            <th>Employee Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of paginatedEmployees(); let i = index">
+            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td>{{ emp.employee_name }}</td>
+            <td>{{ emp.employee_salary }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="totalPages > 1" class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="pagination-button">
+    Previous
+  </button> Page {{ currentPage }} of {{ totalPages }}
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="pagination-button">
+    Next
+  </button>
+</div>
