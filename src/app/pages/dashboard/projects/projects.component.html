@@ -1,5 +1,24 @@
-<h2>Projects works!</h2>
+<div *ngIf="products.length === 0">
+    Loading products...
+</div>
 
-<a routerLink="edit-project">Edit Project</a>
-
-<router-outlet></router-outlet>
+<table *ngIf="products.length > 0" class="product-table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price ($)</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>
+                <img [src]="product.image" alt="product" height="50">
+            </td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
+        </tr>
+    </tbody>
+</table>

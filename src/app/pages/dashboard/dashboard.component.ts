@@ -12,8 +12,9 @@ import { AuthService } from '../../services/auth/auth.service';
 export class DashboardComponent {
 
   private auth= inject(AuthService);
-  logout(): void {
+  logout(): void  {
     this.auth.logout();
+  
 
   }
 

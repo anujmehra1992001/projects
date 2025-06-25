@@ -6,5 +6,4 @@ id:number;
     role:'manager'|'admin'|'user';
 
 
-
 }
