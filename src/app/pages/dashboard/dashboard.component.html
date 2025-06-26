@@ -12,6 +12,10 @@
                     <a routerLink="/dashboard/reports" routerLinkActive="active">reports</a
           >
         </li>
+                <li>
+                    <a routerLink="/dashboard/modal-content" routerLinkActive="active">modal-content</a
+          >
+        </li>
         <li>
           <a routerLink="/dashboard/projects" routerLinkActive="active"
             >projects</a
@@ -33,6 +37,8 @@
             <button (click)="logout()">logout</button>
         </header>
         <div class="content">
+
+
             <router-outlet> </router-outlet>
         </div>
     </section>

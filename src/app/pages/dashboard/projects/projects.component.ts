@@ -10,6 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./projects.component.less']
 })
 export class ProjectsComponent implements OnInit {
+
+   searchText: string = '';
+  sortOption: string = '';
+sortoption :any= '';
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
   products: any[] = [];
 
   constructor(private http: HttpClient) {}
@@ -18,6 +24,8 @@ export class ProjectsComponent implements OnInit {
     this.http.get<any[]>('https://fakestoreapi.com/products').subscribe({
       next: (data) => this.products = data,
       error: (err) => console.error('API error:', err)
+
     });
   }
+  
 }

@@ -31,6 +31,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'modal-content',
+        loadComponent: () =>
+          import('./pages/dashboard/modal-content/modal-content.component').then(
+            (c) => c.ModalContentComponent
+          ),
+      },
+      {
         path: 'projects',
         loadComponent: () =>
           import('./pages/dashboard/projects/projects.component').then(
@@ -50,10 +57,10 @@ export const routes: Routes = [
                   import('./pages/dashboard/projects/edit-project/month/month.component').then(
                     (c) => c.MonthComponent
                   ),
-              }
-            ]
-          }
-        ]
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'employee',
@@ -61,7 +68,7 @@ export const routes: Routes = [
           import('./pages/settings/settings.component').then(
             (c) => c.SettingsComponent
           ),
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
