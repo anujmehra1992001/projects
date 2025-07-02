@@ -1,13 +1,21 @@
 {
-    "posts": [
-        { "id": "1", "title": "a title", "views": 100 },
-        { "id": "2", "title": "another title", "views": 200 }
+    "users": [
+        { "id": 1, "name": "Anuj Mehra" },
+        { "id": 2, "name": "Ravi Kumar" },
+        { "id": 3, "name": "Priya Sharma" }
     ],
-    "comments": [
-        { "id": "1", "text": "a comment about post 1", "postId": "1" },
-        { "id": "2", "text": "another comment about post 1", "postId": "1" }
-    ],
-    "profile": {
-        "name": "typicode"
-    }
+    "sales": [
+        { "id": 1, "month": "Jan", "sales": 12000 },
+        { "id": 2, "month": "Feb", "sales": 15000 },
+        { "id": 3, "month": "Mar", "sales": 10000 },
+        { "id": 4, "month": "Apr", "sales": 18000 },
+        { "id": 5, "month": "May", "sales": 22000 },
+        { "id": 6, "month": "Jun", "sales": 19500 },
+        { "id": 7, "month": "Jul", "sales": 25000 },
+        { "id": 8, "month": "Aug", "sales": 21000 },
+        { "id": 9, "month": "Sep", "sales": 17500 },
+        { "id": 10, "month": "Oct", "sales": 23000 },
+        { "id": 11, "month": "Nov", "sales": 24000 },
+        { "id": 12, "month": "Dec", "sales": 26000 }
+    ]
 }
