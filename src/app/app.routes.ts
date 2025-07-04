@@ -27,7 +27,7 @@ export const routes: Routes = [
         path: 'reports',
         loadComponent: () =>
           import('./pages/dashboard/reports/reports.component').then(
-            (c) => c.ReportsComponent
+            (c) => c.reportsComponent
           ),
       },
       {
@@ -37,6 +37,20 @@ export const routes: Routes = [
             (c) => c.ModalContentComponent
           ),
       },
+      {
+        path: 'json-api',
+        loadComponent: () =>
+          import('./pages/dashboard/json-api/json-api.component').then(
+            (c) => c.JsonApiComponent
+          ),
+      },
+{
+  path: 'sales-chart',
+  loadComponent: () =>
+    import('./pages/dashboard/sales-chart/sales-chart.component').then(
+      (c) => c.SalesChartComponent
+    ),
+},
       {
         path: 'projects',
         loadComponent: () =>

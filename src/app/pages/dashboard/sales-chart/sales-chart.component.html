@@ -1,0 +1,11 @@
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!error && lineChartData.labels?.length">
+    <canvas baseChart [data]="lineChartData" [type]="'line'">
+  </canvas>
+</div>
+
+
+<h1 style="color: blueviolet;">
+    aa ja bhai dikh jaa
+</h1>

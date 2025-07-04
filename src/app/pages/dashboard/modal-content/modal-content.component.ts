@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-modal-content',
   standalone: true,
-  templateUrl: './modal-content.component.html',
+  templateUrl: './modal-content.component.html', // ✅ Match file name
   styleUrls: ['./modal-content.component.less']
 })
 export class ModalContentComponent {
@@ -15,4 +15,10 @@ export class ModalContentComponent {
     status: 'Active',
     description: 'good thinks take time and one more motivatuon thought i can and i will .'
   };
+
+  show(){
+    this.show
+  }
+  
+
 }
