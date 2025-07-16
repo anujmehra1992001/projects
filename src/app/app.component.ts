@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { CommonModule } from '@angular/common';
     RouterOutlet,      
     FormsModule,
     CommonModule,
-    LoginComponent,       
+    LoginComponent,     
+    NgChartsModule,  
     
   ],
   templateUrl: './app.component.html',

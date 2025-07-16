@@ -6,6 +6,8 @@ import { User } from '../../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
+
+
   private users: User[] = [
     { id: 1, email: 'text@example.com', password: 'text123', role: 'admin' },
     { id: 2, email: 'manager@example.com', password: 'manager123', role: 'manager' },
@@ -32,6 +34,8 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.navigateByUrl('/login');
   }
+  
+  
 
   getCurrentUser(): User | null {
     if (!this.currentUser) {

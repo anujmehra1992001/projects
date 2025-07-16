@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-json-api',
-  standalone: true,
-  imports: [CommonModule, HttpClientModule],
-  templateUrl: './json-api.component.html'
+  standalone:true,
+  imports:[CommonModule,HttpClientModule],
+  templateUrl: './json-api.component.html',
+  styleUrls: ['./json-api.component.less'] 
 })
+
 export class JsonApiComponent implements OnInit {
   users: any[] = [];
   loading = false;

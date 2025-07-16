@@ -1,21 +1,31 @@
 {
     "users": [
-        { "id": 1, "name": "Anuj Mehra" },
-        { "id": 2, "name": "Ravi Kumar" },
-        { "id": 3, "name": "Priya Sharma" }
+        { "id": 1, "month": "Jan", "value": 1000 },
+        { "id": 2, "month": "Feb", "value": 1500 },
+        { "id": 3, "month": "Mar", "value": 1200 },
+        { "id": 4, "month": "Apr", "value": 1800 },
+        { "id": 5, "month": "May", "value": 1600 },
+        { "id": 6, "month": "Jun", "value": 2000 }
     ],
-    "sales": [
-        { "id": 1, "month": "Jan", "sales": 12000 },
-        { "id": 2, "month": "Feb", "sales": 15000 },
-        { "id": 3, "month": "Mar", "sales": 10000 },
-        { "id": 4, "month": "Apr", "sales": 18000 },
-        { "id": 5, "month": "May", "sales": 22000 },
-        { "id": 6, "month": "Jun", "sales": 19500 },
-        { "id": 7, "month": "Jul", "sales": 25000 },
-        { "id": 8, "month": "Aug", "sales": 21000 },
-        { "id": 9, "month": "Sep", "sales": 17500 },
-        { "id": 10, "month": "Oct", "sales": 23000 },
-        { "id": 11, "month": "Nov", "sales": 24000 },
-        { "id": 12, "month": "Dec", "sales": 26000 }
+    "salesData": [{
+            "year": 2022,
+            "monthlySales": [100, 150, 200, 130, 90, 170, 180, 210, 240, 190, 160, 220]
+        },
+        {
+            "year": 2023,
+            "monthlySales": [120, 180, 190, 160, 110, 150, 200, 230, 250, 210, 180, 240]
+        }
+    ],
+    "pieData": [
+        { "label": "Electronics", "value": 400 },
+        { "label": "Clothing", "value": 300 },
+        { "label": "Grocery", "value": 200 },
+        { "label": "Others", "value": 100 }
+    ],
+    "barData": [
+        { "category": "Q1", "sales": 450 },
+        { "category": "Q2", "sales": 600 },
+        { "category": "Q3", "sales": 700 },
+        { "category": "Q4", "sales": 500 }
     ]
 }

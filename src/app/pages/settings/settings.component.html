@@ -1,97 +1,113 @@
 <style>
+    /* Typography */
+    
     .title {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        color: linear-gradient(to right, #f18634, #e1e655);
-        background: linear-gradient(to right, #8e2de2, #9c6dfb);
-        -webkit-background-clip: text;
-        color: transparent;
-        animation: fadeIn 2s ease-in-out;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: #2c2c2c;
+        animation: fadeIn 1s ease-in-out;
     }
+    /* Input / Select */
     
-    .input-select {
-        padding: 10px 14px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
+    .input-select,
+    .search-input,
+    .sort-select {
+        padding: 10px 16px;
+        border: 2px solid #0f0f0f;
+        border-radius: 6px;
         font-size: 15px;
-        min-width: 200px;
-        transition: all 0.3s ease-in-out;
+        min-width: 220px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        background-color: #fff;
+        color: #333;
     }
     
-    .input-select:focus {
-        border-color: #8e2de2;
+    .input-select:focus,
+    .search-input:focus,
+    .sort-select:focus {
+        border-color: #4f46e5;
         outline: none;
-        box-shadow: 0 0 6px rgba(142, 45, 226, 0.4);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
     }
+    /* Table Styling */
     
     table {
         width: 100%;
         border-collapse: collapse;
-        background: linear-gradient(to right, #d473e1, #ff70e0);
         border-radius: 10px;
+        border-color: rgb(255, 253, 253);
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background-color: #ffffff;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
         animation: fadeIn 0.8s ease-in-out;
     }
     
     thead {
-        background-color: #8e2de2;
-        color: white;
+        background-color: #4f46e5;
+        color: #0f0e0e;
         text-align: left;
     }
     
     th,
     td {
         padding: 14px 18px;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    tbody tr {
+        border-top: 1px solid #e5e7eb;
     }
     
     tr:hover {
-        background-color: #d8d5fb;
-        transition: background-color 0.3s ease;
+        background-color: #f3f4f6;
+        transition: background-color 0.3s;
     }
-    
-    .pagination-button {
-        padding: 8px 16px;
-        font-size: 14px;
-        background-color: #9a6ef1;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .pagination-button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-    }
+    /* Pagination */
     
     .pagination {
-        margin-top: 20px;
+        margin-top: 24px;
         display: flex;
         align-items: center;
-        gap: 14px;
+        justify-content: center;
+        gap: 12px;
         font-size: 14px;
         animation: fadeIn 1s ease-in-out;
     }
     
-    .search-input:focus,
-    .sort-select:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    .pagination-button {
+        padding: 8px 14px;
+        font-size: 14px;
+        background-color: #4f46e5;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
     }
     
-    .option {
-        background-color: rgb(144, 209, 78);
-        color: #d8d5fb;
+    .pagination-button:hover:not(:disabled) {
+        background-color: #4338ca;
     }
+    
+    .pagination-button:disabled {
+        background-color: #d1d5db;
+        color: #777;
+        cursor: not-allowed;
+    }
+    /* Dropdown option */
+    
+    .option {
+        background-color: #f9fafb;
+        color: #333;
+    }
+    /* Fade animation */
     
     @keyframes fadeIn {
         from {
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(10px);
         }
         to {
             opacity: 1;
@@ -99,6 +115,7 @@
         }
     }
 </style>
+
 
 <p class="title">Employee List and Salary</p>
 
@@ -124,8 +141,8 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Employee Name</th>
-            <th>Employee Salary</th>
+            <th style="color: #ffffff;">Employee Name</th>
+            <th style="color: #ffffff;">Employee Salary</th>
         </tr>
     </thead>
     <tbody>

@@ -15,6 +15,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  selectedAction: string = ''; // ✅ Add this to fix "selectedAction not defined"
 
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -25,10 +26,22 @@ export class LoginComponent {
     if (isUser) {
       this.errorMessage = '';
       this.router.navigateByUrl('/dashboard');
-      // this.router.navigateByUrl('/projects');
     } else {
       this.errorMessage = 'Invalid email or password. Please try again.';
     }
   }
+
+  onForgotClick() {
+    this.selectedAction = 'forgot';
+    console.log('User clicked Forgot Password');
+  }
+
+  onSignUpClick() {
+    this.selectedAction = 'signup';
+    console.log('User clicked Sign Up');
+  }
 }
+
+ 
+
 
