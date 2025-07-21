@@ -16,7 +16,9 @@ export class JsonApiComponent implements OnInit {
   loading = false;
   error: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+
+  }
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -24,6 +26,7 @@ export class JsonApiComponent implements OnInit {
 
   fetchUsers(): void {
     this.loading = true;
+
     this.http.get<any[]>('http://localhost:3000/users').subscribe({
       next: (data) => {
         this.users = data;
@@ -33,6 +36,11 @@ export class JsonApiComponent implements OnInit {
         this.error = 'NetWork issue  ';
         this.loading = false;
       }
+      
+    
+      
+      
+
     });
   }
 }

@@ -22,18 +22,18 @@ export class LoginComponent {
 
   onSubmit(): void {
     const isUser = this.auth.login(this.email, this.password);
-
+    
     if (isUser) {
       this.errorMessage = '';
       this.router.navigateByUrl('/dashboard');
+      
     } else {
       this.errorMessage = 'Invalid email or password. Please try again.';
     }
   }
 
-  onForgotClick() {
-    this.selectedAction = 'forgot';
-    console.log('User clicked Forgot Password');
+   onForgotClick() {
+    this.router.navigate(['/forgot-password']);
   }
 
   onSignUpClick() {

@@ -13,6 +13,13 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((c) => c.LoginComponent),
   },
   {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./pages/dashboard/forgot-password/forgot-password.component').then(
+        (m) => m.ForgotPasswordComponent
+      ),
+  },
+  {
     path: 'dashboard',
     loadComponent: () =>
       import('./pages/dashboard/dashboard.component').then((c) => c.DashboardComponent),
@@ -37,7 +44,6 @@ export const routes: Routes = [
             (c) => c.ModalContentComponent
           ),
       },
-
       {
         path: 'json-api',
         loadComponent: () =>
@@ -45,13 +51,13 @@ export const routes: Routes = [
             (c) => c.JsonApiComponent
           ),
       },
-{
-  path: 'sales-chart',
-  loadComponent: () =>
-    import('./pages/dashboard/sales-chart/sales-chart.component').then(
-      (c) => c.SalesChartComponent
-    ),
-},
+      {
+        path: 'sales-chart',
+        loadComponent: () =>
+          import('./pages/dashboard/sales-chart/sales-chart.component').then(
+            (c) => c.SalesChartComponent
+          ),
+      },
       {
         path: 'projects',
         loadComponent: () =>
@@ -87,3 +93,4 @@ export const routes: Routes = [
     ],
   },
 ];
+

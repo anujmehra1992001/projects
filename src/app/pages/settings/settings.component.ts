@@ -35,6 +35,8 @@ export class SettingsComponent implements OnInit {
       });
   }
 
+
+
   applyFilters() {
     
     this.filteredEmployees = this.employees.filter(emp =>
@@ -43,7 +45,8 @@ export class SettingsComponent implements OnInit {
 
     
     this.sortEmployees();
-
+    this.nextPage();
+    
     
     this.currentPage = 1;
   }

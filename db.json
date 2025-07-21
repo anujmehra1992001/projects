@@ -1,31 +1,82 @@
 {
-    "users": [
-        { "id": 1, "month": "Jan", "value": 1000 },
-        { "id": 2, "month": "Feb", "value": 1500 },
-        { "id": 3, "month": "Mar", "value": 1200 },
-        { "id": 4, "month": "Apr", "value": 1800 },
-        { "id": 5, "month": "May", "value": 1600 },
-        { "id": 6, "month": "Jun", "value": 2000 }
-    ],
-    "salesData": [{
-            "year": 2022,
-            "monthlySales": [100, 150, 200, 130, 90, 170, 180, 210, 240, 190, 160, 220]
+    "users": [{
+            "id": "1",
+            "month": "Jan",
+            "value": 1000
         },
         {
-            "year": 2023,
-            "monthlySales": [120, 180, 190, 160, 110, 150, 200, 230, 250, 210, 180, 240]
+            "id": "2",
+            "month": "Feb",
+            "value": 1500
+        },
+        {
+            "id": "3",
+            "month": "Mar",
+            "value": 1200
+        },
+        {
+            "id": "4",
+            "month": "Apr",
+            "value": 1800
+        },
+        {
+            "id": "5",
+            "month": "May",
+            "value": 1600
+        },
+        {
+            "id": "6",
+            "month": "Jun",
+            "value": 2000
+        },
+        {
+            "id": "198b",
+            "name": "ffgfg",
+            "email": "hhhh"
         }
     ],
-    "pieData": [
-        { "label": "Electronics", "value": 400 },
-        { "label": "Clothing", "value": 300 },
-        { "label": "Grocery", "value": 200 },
-        { "label": "Others", "value": 100 }
+    "salesdata": [{
+            "id": "1",
+            "month": "Jan",
+            "value": 1000
+        },
+        {
+            "id": "2",
+            "month": "Feb",
+            "value": 1500
+        },
+        {
+            "id": "3",
+            "month": "Mar",
+            "value": 1200
+        },
+        {
+            "id": "4",
+            "month": "Apr",
+            "value": 1800
+        },
+        {
+            "id": "5",
+            "month": "May",
+            "value": 1600
+        },
+        {
+            "id": "6",
+            "month": "Jun",
+            "value": 2000
+        }
     ],
-    "barData": [
-        { "category": "Q1", "sales": 450 },
-        { "category": "Q2", "sales": 600 },
-        { "category": "Q3", "sales": 700 },
-        { "category": "Q4", "sales": 500 }
+    "login": [{
+
+            "id": 1,
+            "email": "text@example.com",
+            "password": "text123",
+            "role": "admin"
+        }
+
+
+
+
+
     ]
 }

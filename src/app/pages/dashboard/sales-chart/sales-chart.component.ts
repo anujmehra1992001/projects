@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartConfiguration } from 'chart.js';
+import { ChartConfiguration, registerables } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
+import { Chart } from 'chart.js/dist';
+ 
 @Component({
   selector: 'app-sales-chart',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, NgChartsModule], 
+  imports: [CommonModule, HttpClientModule, NgChartsModule],
   templateUrl: './sales-chart.component.html',
+   styleUrl: './sales-chart.component.less'
 })
 export class SalesChartComponent implements OnInit {
   lineChartData: ChartConfiguration<'line'>['data'] = {
@@ -21,8 +23,8 @@ export class SalesChartComponent implements OnInit {
         tension: 0.5,
         borderColor: '#42A5F5',
         backgroundColor: 'rgba(66, 165, 245, 0.4)',
-      }
-    ]
+      },
+    ],
   };
 
   lineChartOptions: ChartConfiguration<'line'>['options'] = {
@@ -36,9 +38,9 @@ export class SalesChartComponent implements OnInit {
   }
 
   fetchChartData() {
-    this.http.get<any[]>('http://localhost:3000/users').subscribe((data) => {
-      const labels = data.map(item => item.month);
-      const values = data.map(item => item.value);
+    this.http.get<any[]>('http://localhost:3000/salesdata').subscribe((data) => {
+      const labels = data.map((item) => item.month);
+      const values = data.map((item) => item.value);
 
       this.lineChartData.labels = labels;
       this.lineChartData.datasets[0].data = values;

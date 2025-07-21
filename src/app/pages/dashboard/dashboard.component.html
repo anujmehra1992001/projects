@@ -47,12 +47,12 @@
             <router-outlet></router-outlet>
         </div>
     </section>
-</div> -->-->
+</div> -->
 <div class="dashboard">
     <aside class="sidebar">
         <div class="container">
             <h1>{{ user.name }}</h1>
-            <!-- <img [src]="user.image" alt="User Photo" width="32" height="32" /> -->
+            <img [src]="user.image" alt="User Photo" width="32" height="32" />
             <h3>DashBoard</h3>
         </div>
         <p style="color: red">{{ user.name }}</p>
@@ -74,7 +74,7 @@
             <button (click)="logout()">logout</button>
         </header>
 
-        <!-- ✅ Cards Section (add this) -->
+        <!--  Cards Section (add this) -->
         <div class="dashboard-cards">
             <div class="card" *ngFor="let card of cards">
                 <div class="card-icon">

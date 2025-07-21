@@ -38,7 +38,7 @@ export class DashboardComponent {
 
   user = {
     name: 'Anuj Mehra',
-    // image: 'assets/images/ANUJ MEHRA.jpg'
+    image: 'assets/images/ANUJ MEHRA.jpg'
   };
 
   menuItems = [
@@ -47,7 +47,10 @@ export class DashboardComponent {
     { label: 'Projects', path: 'projects' },
     { label: 'JSON API', path: 'json-api' },
     { label: 'Sales Chart', path: 'sales-chart' },
+    { label: 'forgot password',path:'forgot password'},
     { label: 'Employee', path: 'employee' }
+    
+    
   ];
 
   logout(): void {

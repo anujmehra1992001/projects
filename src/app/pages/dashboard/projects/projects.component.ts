@@ -16,34 +16,39 @@ export class ProjectsComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 4;
   products: any[] = [];
+  isLoading: boolean = true;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.http.get<any[]>('https://fakestoreapi.com/products').subscribe({
-      next: (data) => this.products = data,
-      error: (err) => console.error('API error:', err)
+      next: (data) => {
+        this.products = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('API error:', err);
+        this.isLoading = false;
+      }
     });
   }
 
   get filteredProducts(): any[] {
     let filtered = [...this.products];
 
-    // Filter by title
     if (this.searchText.trim()) {
       filtered = filtered.filter(product =>
         product.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
 
-    // Sort
     if (this.sortOption === 'priceAsc') {
       filtered.sort((a, b) => a.price - b.price);
     } else if (this.sortOption === 'priceDesc') {
       filtered.sort((a, b) => b.price - a.price);
     }
 
-    // Pagination
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(start, start + this.itemsPerPage);
   }
