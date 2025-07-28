@@ -6,6 +6,7 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
+
   },
   {
     path: 'login',
@@ -38,7 +39,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'modal-content',
+        path: 'modal-content/:id',
         loadComponent: () =>
           import('./pages/dashboard/modal-content/modal-content.component').then(
             (c) => c.ModalContentComponent
@@ -58,6 +59,7 @@ export const routes: Routes = [
             (c) => c.SalesChartComponent
           ),
       },
+      
       {
         path: 'projects',
         loadComponent: () =>

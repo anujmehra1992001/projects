@@ -40,6 +40,7 @@ export class LoginComponent {
     this.selectedAction = 'signup';
     console.log('User clicked Sign Up');
   }
+  
 }
 
  

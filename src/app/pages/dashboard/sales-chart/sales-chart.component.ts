@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, registerables } from 'chart.js';
-import { NgChartsModule } from 'ng2-charts';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Chart } from 'chart.js/dist';
@@ -8,7 +8,7 @@ import { Chart } from 'chart.js/dist';
 @Component({
   selector: 'app-sales-chart',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, NgChartsModule],
+  imports: [CommonModule, HttpClientModule, ],
   templateUrl: './sales-chart.component.html',
    styleUrl: './sales-chart.component.less'
 })

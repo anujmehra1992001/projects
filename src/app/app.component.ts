@@ -3,9 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgChartsModule } from 'ng2-charts';
-import { SalesChartComponent } from './pages/dashboard/sales-chart/sales-chart.component';
-
 
 @Component({
   selector: 'app-root',
@@ -14,11 +11,7 @@ import { SalesChartComponent } from './pages/dashboard/sales-chart/sales-chart.c
     RouterOutlet,      
     FormsModule,
     CommonModule,
-    LoginComponent,     
-    NgChartsModule, 
-    SalesChartComponent,
-   
-    
+    LoginComponent, 
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']

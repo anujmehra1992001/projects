@@ -13,27 +13,33 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   imports: [FormsModule, HttpClientModule, RouterModule, RouterOutlet],
 })
 export class reportsComponent {
-  email = '';
-  password = '';
-  message = '';
+  roles: any[] = [];
+selectedRole = '';
 
-  constructor(private http: HttpClient) {}
+email = '';
+password = '';
 
-  login() {
-    this.http.post<any>('http://localhost:3000/api/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe({
-      next: (res) => {
-        this.message = res.message;
-        console.log('✅ Login Success:', res);
+constructor(private http: HttpClient) {}
 
-        // 💾 Save token in localStorage
-        localStorage.setItem('token', res.token);
-      },
-      error: (err) => {
-        this.message = err.error.message;
-        console.log('❌ Login Failed:', err);
-      }
-    });
-  } }
+ngOnInit() {
+  this.http.get<any[]>('http://localhost:3000/api/roles',).subscribe((res) => {
+    console.log(' Roles received:', res);
+    this.roles = res;
+  });
+}
+
+login() {
+  const payload = { email: this.email, password: this.password };
+
+  this.http.post('http://localhost:3000/api/login', payload).subscribe({
+    next: (res: any) => {
+      console.log('Login successful:', res);
+      
+    },
+    error: (err) => {
+      console.error('Login failed:', err);
+    }
+  });
+}
+
+}

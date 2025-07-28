@@ -25,3 +25,40 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# 🧠 SmartAdmin Dashboard
+
+A modular Angular dashboard application with real-time API integration, lazy-loaded modules, and role-based routing. Built with Angular 17, TailwindCSS, and RxJS.
+
+## 🚀 Features
+
+- ✅ Authentication with JWT token
+- 🔐 Role-based access control using route guards
+- 📊 Dynamic charts using Chart.js still working
+- 📁 Lazy loading for improved performance
+- 💬 Integrated HTTP interceptor for API security  along everywhere 
+- 📦 Reusable components (cards, tables, modals)
+- 🧪 Unit testing with Jasmine + Karma  
+
+---
+
+## 🖥️ Tech Stack
+
+| Layer          | Technology                |
+|----------------|---------------------------|
+| Frontend       | Angular 17                |
+| State Management | RxJS (Observables)     |
+| Styling        | bootstrap and custom css              |
+| Charting       | Chart.js                  |
+| API Mock       | JSONPlaceholder / Reqres  |
+| Auth Handling  | LocalStorage + Interceptor|
+| Deployment     | Vercel / Netlify ready    |
+
+---
+
+## 🔧 Project Setup
+
+```bash
+npm install
+ css style bootstap
+ 

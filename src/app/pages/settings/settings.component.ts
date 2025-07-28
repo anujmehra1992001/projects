@@ -67,7 +67,7 @@ export class SettingsComponent implements OnInit {
         break;
     }
   }
-
+  
   paginatedEmployees(): any[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredEmployees.slice(start, start + this.itemsPerPage);

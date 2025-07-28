@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-modal-content',
@@ -19,6 +20,13 @@ export class ModalContentComponent {
   show(){
     this.show
   }
+
+  // private route =inject(ActivatedRoute);
+  
+  // ngOnInit(){
+  //   const id= this.route.snapshot.paramMap.get('id');
+  //   console.log(id);
+  // }
   
 
 }
