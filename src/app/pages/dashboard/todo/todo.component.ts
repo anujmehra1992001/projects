@@ -22,9 +22,10 @@ export class TodoComponent implements OnInit {
   skip: number = 0;
   limit: number = 5;
   total: number = 0;
-  selectedId: number | undefined;
-  isEditing: boolean | undefined;
   
+
+  editId: number | null = null;
+  editedTodo: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -53,19 +54,44 @@ export class TodoComponent implements OnInit {
       this.fetchTodos();
     }
   }
-onNext(id: number): void {
-  this.router.navigate(['/dashboard/next', id]); 
-  }
 
   onCancel(): void {
-  this.isEditing = false;
+    this.editId = null;
+    this.editedTodo = '';
+  }
+ 
+  
+  onNext(id: number): void {
+    this.router.navigate(['/dashboard/next-view', id]);
+  }
+
+ 
+  startEdit(todo: any): void {
+    this.editId = todo.id;
+    this.editedTodo = todo.todo;
+  }
+
+  
+  saveEdit(todo: any): void {
+    const updated = {
+      todo: this.editedTodo,
+      completed: todo.completed,
+      userId: todo.userId,
+    };
+
+    this.http.put(`https://dummyjson.com/todos/${todo.id}`, updated)
+      .subscribe(() => {
+        todo.todo = this.editedTodo;
+        this.editId = null;
+        this.editedTodo = '';
+      });
+  }
+
+  // Delete Todo
+  deleteTodo(id: number): void {
+    this.http.delete(`https://dummyjson.com/todos/${id}`)
+      .subscribe(() => {
+        this.todos = this.todos.filter(t => t.id !== id);
+      });
   }
 }
-
-
-
-
-
-
-
-
