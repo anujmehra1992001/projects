@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -21,13 +21,18 @@ export class TodoComponent implements OnInit {
   todos: any[] = [];
   skip: number = 0;
   limit: number = 5;
-  total: number = 0;
+  total: number = 1;
   
 
   editId: number | null = null;
   editedTodo: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,
+     private router: Router,
+     private route: ActivatedRoute
+
+    
+  ) {}
 
   ngOnInit(): void {
     this.fetchTodos();
@@ -47,7 +52,7 @@ export class TodoComponent implements OnInit {
       this.fetchTodos();
     }
   }
-
+  
   prevPage(): void {
     if (this.skip >= this.limit) {
       this.skip -= this.limit;
@@ -59,19 +64,14 @@ export class TodoComponent implements OnInit {
     this.editId = null;
     this.editedTodo = '';
   }
- 
-  
   onNext(id: number): void {
-    this.router.navigate(['/dashboard/next-view', id]);
+     this.router.navigate(['/dashboard/next-view', id]);
   }
-
- 
   startEdit(todo: any): void {
     this.editId = todo.id;
     this.editedTodo = todo.todo;
   }
 
-  
   saveEdit(todo: any): void {
     const updated = {
       todo: this.editedTodo,
@@ -79,19 +79,22 @@ export class TodoComponent implements OnInit {
       userId: todo.userId,
     };
 
-    this.http.put(`https://dummyjson.com/todos/${todo.id}`, updated)
+    this.http.put(`https://dummyjson.com/todos${todo.id}`, updated)
       .subscribe(() => {
         todo.todo = this.editedTodo;
-        this.editId = null;
+        this.editId = null; 
         this.editedTodo = '';
       });
   }
-
-  // Delete Todo
   deleteTodo(id: number): void {
-    this.http.delete(`https://dummyjson.com/todos/${id}`)
+    this.http.delete(`https://dummyjson.com/todos${id}`)
       .subscribe(() => {
         this.todos = this.todos.filter(t => t.id !== id);
       });
   }
+ 
+
 }
+
+
+

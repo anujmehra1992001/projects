@@ -1,4 +1,4 @@
-<h2 class="mb-4">📋 Todo List</h2>
+<!-- <h2 class="mb-4"> Todo List</h2>
 
 <div class="table-responsive">
     <table class="table table-bordered table-hover border-dark">
@@ -17,7 +17,7 @@
                 <td>{{ todo.id }}</td>
 
                 <!-- Todo Text or Input -->
-                <td *ngIf="editId !== todo.id">{{ todo.todo }}</td>
+<!-- <td *ngIf="editId !== todo.id">{{ todo.todo }}</td>
                 <td *ngIf="editId === todo.id">
                     <input [(ngModel)]="editedTodo" class="form-control" />
                 </td>
@@ -48,10 +48,9 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div> -->
 
-<!-- Pagination -->
-<div class="d-flex justify-content-between mt-3">
+<!-- <div class="d-flex justify-content-between mt-3">
     <button class="btn btn-secondary" (click)="prevPage()" [disabled]="skip === 0">Prev</button>
     <button class="btn btn-primary" (click)="nextPage()" [disabled]="(skip + limit) >= (total || 0)">Next</button>
 </div>
@@ -59,4 +58,164 @@
 
 <div class="mt-3">
     <button class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="mb-4">Todo List</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover border-dark">
+        <thead class="table-light border-dark">
+            <tr>
+                <th>ID</th>
+                <th>Todo</th>
+                <th>Completed</th>
+                <th>User ID</th>
+                <th>Action</th>
+                <th>Empty</th>
+                <th>Navigate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let todo of todos">
+                <!-- Edit Mode -->
+                <tr *ngIf="editId === todo.id" class="bg-light">
+                    <form (ngSubmit)="saveEdit(todo)" #editForm="ngForm">
+                        <td>{{ todo.id }}</td>
+                        <td>
+                            <input type="text" [(ngModel)]="editedTodo" name="todoText" class="form-control form-control-sm" placeholder="Enter updated todo" required />
+                        </td>
+                        <td>
+                            <input type="checkbox" [(ngModel)]="todo.completed" name="completed" />
+                        </td>
+                        <td>{{ todo.userId }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-success btn-sm me-1">Save</button>
+                            <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" (click)="onNext(todo.id)">Next</button>
+                        </td>
+                    </form>
+                </tr>
+
+                <!-- Normal View -->
+                <tr *ngIf="editId !== todo.id">
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.todo }}</td>
+                    <td>
+                        <input type="checkbox" [checked]="todo.completed" disabled />
+                    </td>
+                    <td>{{ todo.userId }}</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" (click)="startEdit(todo)">Update</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="onNext(todo.id)">Next</button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
 </div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-between mt-3">
+    <button class="btn btn-secondary" (click)="prevPage()" [disabled]="skip === 0">Prev</button>
+    <button class="btn btn-primary" (click)="nextPage()" [disabled]="skip + limit >= (total || 0)">Next</button>
+</div>
+
+<!-- Cancel Button -->
+<div class="mt-3">
+    <button class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
+</div>
+
+<!-- Extra Navigate Button (optional) -->
+<!-- You can remove this if unnecessary -->
+<!-- <div class="mt-4">
+  <button class="btn btn-primary btn-sm" (click)="onNext(1)">Next</button>
+</div> -->
