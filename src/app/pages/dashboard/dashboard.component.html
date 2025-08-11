@@ -1,45 +1,97 @@
-<div class="dashboard">
-  <aside class="sidebar">
-    <div class="container">
-      <h1>ANUJ MEHRA</h1>
-      <img
-        src="assets/images/ANUJ MEHRA.jpg"
-        alt="Angular logo"
-        width="32"
-        height="32"
-      />
+<!-- <div class="dashboard">
+    <aside class="sidebar">
+        <div class="container">
+            <h1>Anuj Mehra</h1>
+            <img src="assets/images/ANUJ MEHRA.jpg" alt="Angular logo" width="32" height="32" />
+            <h3>DashBoard</h3>
+        </div>
 
-      <h2>dashboard</h2>
-    </div>
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="/dashboard/reports" routerLinkActive="active"
-            >reports</a
-          >
-        </li>
-        <li>
-          <a routerLink="/dashboard/projects" routerLinkActive="active"
-            >projects</a
-          >
-        </li>
-        <a routerLink="/dashboard/employee" routerLinkActive="active">
-          employee
-        </a>
-
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/dashboard/reports" routerLinkActive="active">reports</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/modal-content" routerLinkActive="active">modal-content</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/projects" routerLinkActive="active">projects</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/json-api" routerLinkActive="active">json-api</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/sales-chart" routerLinkActive="active">sales-chart</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/employee" routerLinkActive="active">employee</a>
+                </li>
+                <!--
         <li>
           <a routerLink="/dashboard/layots" routerLinkActive="active">layots</a>
         </li>
-      </ul>
-    </nav><object data="" type=""></object>
-  </aside>
-  <section class="main-content">
-    <header>
-      <h1>Welcome to dashboard</h1>
-      <button (click)="logout()">logout</button>
-    </header>
-    <div class="content">
-      <router-outlet> </router-outlet>
-    </div>
-  </section>
+        -->
+<!-- </ul>
+        </nav>
+
+        <object data="" type=""></object>
+    </aside>
+
+    <section class="main-content">
+        <header>
+            <h1>Welcome to dashboard</h1>
+            <button (click)="logout()">logout</button>
+        </header>
+
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+</div> -->
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="container">
+            <h1>{{ user.name }}</h1>
+            <img [src]="user.image" alt="User Photo" width="32" height="32" />
+            <h3>DashBoard</h3>
+        </div>
+        <p style="color: red">{{ user.name }}</p>
+
+        <nav>
+            <ul>
+                <li *ngFor="let item of menuItems">
+                    <a [routerLink]="['/dashboard', item.path]" routerLinkActive="active">
+            {{ item.label }}
+          </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <section class="main-content">
+        <header>
+            <h1>Welcome to dashboard</h1>
+            <button (click)="logout()">logout</button>
+        </header>
+
+        <!--  Cards Section (add this) -->
+        <div class="dashboard-cards">
+            <div class="card" *ngFor="let card of cards">
+                <div class="card-icon">
+                    <i [class]="card.icon"></i>
+                </div>
+                <div class="card-details">
+                    <h3>{{ card.title }}</h3>
+                    <p>This Week</p>
+                    <h2>{{ card.value }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Existing dynamic content -->
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+
 </div>

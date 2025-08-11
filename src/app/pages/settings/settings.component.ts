@@ -35,6 +35,8 @@ export class SettingsComponent implements OnInit {
       });
   }
 
+
+
   applyFilters() {
     
     this.filteredEmployees = this.employees.filter(emp =>
@@ -43,7 +45,8 @@ export class SettingsComponent implements OnInit {
 
     
     this.sortEmployees();
-
+    this.nextPage();
+    
     
     this.currentPage = 1;
   }
@@ -64,7 +67,7 @@ export class SettingsComponent implements OnInit {
         break;
     }
   }
-
+  
   paginatedEmployees(): any[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredEmployees.slice(start, start + this.itemsPerPage);
@@ -82,7 +85,6 @@ export class SettingsComponent implements OnInit {
     if (this.currentPage > 1) this.currentPage--;
   }
 }
-
 
 function user() {
   throw new Error('Function not implemented.');

@@ -1,0 +1,44 @@
+<p>next-view works!</p>
+<h2>🎉 Welcome to the Next View Component</h2>
+<h2>Update Todo Status</h2>
+<!-- <button (click)="updateTodoStatus()">Update Todo #1</button> -->
+<!-- <div class="container mt-4">
+    <h3>📝 Edit Todo</h3>
+
+    <form [formGroup]="todoForm" (ngSubmit)="updateTodo()">
+        <div class="mb-3">
+            <label class="form-label">Todo</label>
+            <input class="form-control" formControlName="todo" />
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" formControlName="completed" />
+            <label class="form-check-label">Completed</label>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">User ID</label>
+            <input type="number" class="form-control" formControlName="userId" />
+        </div>
+
+        <button type="submit" class="btn btn-primary me-2">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deleteTodo()">Delete</button>
+    </form>
+</div> -->
+
+<h2>Edit Todo (ID: {{ todoId }})</h2>
+
+<form (ngSubmit)="updateTodo()">
+    <div class="mb-3">
+        <label class="form-label">Todo</label>
+        <input type="text" [(ngModel)]="todoData.todo" name="todo" class="form-control" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" [(ngModel)]="todoData.completed" name="completed" class="form-check-input" />
+        <label class="form-check-label">Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-success me-2">Save</button>
+    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+</form>

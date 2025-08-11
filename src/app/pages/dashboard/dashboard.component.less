@@ -4,8 +4,8 @@
 }
 
 .sidebar {
-  background: linear-gradient(to right, #427893, #16232b);
-  color: #fff;
+  // background: linear-gradient(to right, #427893, #16232b);
+  // color: #fff;
   width: 12vw;
   padding: 20px;
   display: flex;
@@ -100,3 +100,60 @@
     padding: 20px;
   }
 }
+.sidebar {
+  background: linear-gradient(to bottom, #1e3c72, #2a5298);
+  color: white;
+}
+.dashboard-cards {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.card:nth-child(2) {
+  background: linear-gradient(135deg, #2196f3, #3f51b5);
+}
+
+.card:nth-child(3) {
+  background: linear-gradient(135deg, #ff5722, #e91e63);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.card-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-details p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.card-details h2 {
+  margin-top: 10px;
+  font-size: 28px;
+}
+
+

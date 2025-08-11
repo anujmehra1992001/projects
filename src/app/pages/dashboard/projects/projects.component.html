@@ -1,5 +1,42 @@
-<h2>Projects works!</h2>
+<!-- Filters -->
+<!-- Filters -->
+<div style="margin-bottom: 16px;" *ngIf="!isLoading">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search products" style="padding: 6px; margin-right: 8px;" />
+    <select [(ngModel)]="sortOption" style="padding: 6px;">
+    <option value="">Sort By</option>
+    <option value="priceAsc">Price: Low to High</option>
+    <option value="priceDesc">Price: High to Low</option>
+  </select>
+</div>
 
-<a routerLink="edit-project">Edit Project</a>
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
+</div>
 
-<router-outlet></router-outlet>
+<!-- Table -->
+<table *ngIf="!isLoading && products.length > 0" class="product-table" border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price ($)</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of filteredProducts">
+            <td><img [src]="product.image" alt="product" height="50" /></td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div *ngIf="!isLoading && totalPages > 1" style="margin-top: 16px;">
+    <button (click)="changePage(-1)" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="changePage(1)" [disabled]="currentPage === totalPages">Next</button>
+</div>

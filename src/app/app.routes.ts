@@ -6,11 +6,19 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
+
   },
   {
     path: 'login',
     loadComponent: () =>
       import('./pages/login/login.component').then((c) => c.LoginComponent),
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./pages/dashboard/forgot-password/forgot-password.component').then(
+        (m) => m.ForgotPasswordComponent
+      ),
   },
   {
     path: 'dashboard',
@@ -27,9 +35,31 @@ export const routes: Routes = [
         path: 'reports',
         loadComponent: () =>
           import('./pages/dashboard/reports/reports.component').then(
-            (c) => c.ReportsComponent
+            (c) => c.reportsComponent
           ),
       },
+      {
+        path: 'modal-content/:id',
+        loadComponent: () =>
+          import('./pages/dashboard/modal-content/modal-content.component').then(
+            (c) => c.ModalContentComponent
+          ),
+      },
+      {
+        path: 'json-api',
+        loadComponent: () =>
+          import('./pages/dashboard/json-api/json-api.component').then(
+            (c) => c.JsonApiComponent
+          ),
+      },
+      {
+        path: 'sales-chart',
+        loadComponent: () =>
+          import('./pages/dashboard/sales-chart/sales-chart.component').then(
+            (c) => c.SalesChartComponent
+          ),
+      },
+      
       {
         path: 'projects',
         loadComponent: () =>
@@ -50,10 +80,10 @@ export const routes: Routes = [
                   import('./pages/dashboard/projects/edit-project/month/month.component').then(
                     (c) => c.MonthComponent
                   ),
-              }
-            ]
-          }
-        ]
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'employee',
@@ -61,7 +91,8 @@ export const routes: Routes = [
           import('./pages/settings/settings.component').then(
             (c) => c.SettingsComponent
           ),
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
+

@@ -1,94 +1,152 @@
-.container{
-    background: linear-gradient(to right, #a45e9d, #6c7adf);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.login-container{
-    width: 100%;
-    max-width: 400px;
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Container with Gradient Background */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #a45e9d, #6c7adf);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Responsive Login Container */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+.login-container h2 {
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.login-container p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+/* Input Group */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #999;           /* Darker border */
+  background-color: #fff;
+  color: #333;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #6c7adf;
+  box-shadow: 0 0 0 3px rgba(108, 122, 223, 0.25);  /* Like Bootstrap */
+  outline: none;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+/* Submit Button */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  color: #fff;
+  background-color: #3a6073;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #2d4f61;
+}
+
+/* Links Below Form */
+.login-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.login-links a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-links a:hover {
+  color: #3a6073;
+}
+
+/* 🔁 Responsive tweaks for small screens */
+@media (max-width: 480px) {
+  .login-container {
     padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
 
-}
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
 
-.login-card{
-    width: 100%;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(0, 0, 0,0.2);
-    text-align: center;
-}
-.h2{
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-.p{
-    color: #666;
-    margin-bottom: 20px;
-
-}
-.input-group{
-    margin-bottom: 15px;
-    text-align: left;
-
-
-}
-
-.input-group{
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid#1a1919;
-    border-radius: 5px;
+  .login-button {
     font-size: 1rem;
+  }
 
+  .login-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
 }
-.login-button{
-
-    width: 100%;
-    padding: 30px;
-    margin-top: 10px;
-    background-color: #3a6073;
-    color: #fff;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0,3s;
-
+.blinking-text {
+  animation: blink 1s infinite;
+  font-weight: bold;
+  color: #000000; /* green */
+  font-size: 18px;
 }
-.login-button:hover{
-    background-color: #3a6073;
 
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
 }
-.login-links{
-    
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
 
-
- a{
-color: #333;
-text-decoration: none;
-transition: color 0.3s;
-
-}
-a:hover{
-    color: #3a6073;
-}}
-
-.error-message{
-    color: red;
-    font-size: 0.83rem;
-
-}
