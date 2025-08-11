@@ -151,6 +151,7 @@ export class NextViewComponent implements OnInit {
         console.log(res);
       },
 
+
       (err) => {
         alert('Update failed!');
         console.error(err);

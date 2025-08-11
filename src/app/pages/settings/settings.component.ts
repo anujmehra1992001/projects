@@ -35,15 +35,12 @@ export class SettingsComponent implements OnInit {
       });
   }
 
-
-
   applyFilters() {
     
     this.filteredEmployees = this.employees.filter(emp =>
       emp.employee_name.toLowerCase().includes(this.searchText.toLowerCase())
     );
 
-    
     this.sortEmployees();
     this.nextPage();
     

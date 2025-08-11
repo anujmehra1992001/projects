@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+
+  import { Routes } from '@angular/router';
 import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
@@ -39,6 +40,13 @@ export const routes: Routes = [
           ),
       },
       {
+    path: 'search',
+    loadComponent: () =>
+      import('./pages/dashboard/search/search.component').then(
+        (c) => c.SearchComponent
+      ),
+  },
+      {
         path: 'modal-content/:id',
         loadComponent: () =>
           import('./pages/dashboard/modal-content/modal-content.component').then(
@@ -59,7 +67,22 @@ export const routes: Routes = [
             (c) => c.SalesChartComponent
           ),
       },
-      
+
+{
+      path: 'todo',
+      loadComponent: () =>
+        import('./pages/dashboard/todo/todo.component').then(
+          (c) => c.TodoComponent
+        ),
+    },
+    {
+      path: 'next-view/:id',  
+      loadComponent: () =>
+        import('./pages/dashboard/next-view/next-view.component').then(
+          (c) => c.NextViewComponent
+        ),
+    },
+
       {
         path: 'projects',
         loadComponent: () =>
@@ -95,4 +118,6 @@ export const routes: Routes = [
     ],
   },
 ];
+
+
 

@@ -22,7 +22,6 @@ export class JsonApiComponent implements OnInit {
   ngOnInit(): void {
     this.fetchUsers();
   }
-
   fetchUsers(): void {
     this.loading = true;
     this.error = null;
@@ -41,6 +40,7 @@ export class JsonApiComponent implements OnInit {
     });
   }
 
+
   showToast(message: string): void {
     this.toastMessage = message;
     this.toastVisible = true;
@@ -50,4 +50,5 @@ export class JsonApiComponent implements OnInit {
     }, 3000);
   }
 }
+
 

@@ -1,37 +1,32 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet, ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    RouterOutlet,
-    CommonModule,
+  imports: [CommonModule, FormsModule, ButtonModule, HttpClientModule, RouterModule, RouterOutlet, RouterLinkActive
+     
   ],
   templateUrl: './todo.component.html',
-  styleUrl: './todo.component.less',
+  styleUrls: ['./todo.component.less']
 })
 export class TodoComponent implements OnInit {
   todos: any[] = [];
-  skip: number = 0;
-  limit: number = 5;
-  total: number = 1;
-  
+  skip = 0;
+  limit = 5;
+  total = 1;
 
-  editId: number | null = null;
-  editedTodo: string = '';
+  showModal = false;
+  modalData = { id: 0, todo: '', completed: false, userId: 0 };
 
-  constructor(private http: HttpClient,
-     private router: Router,
-     private route: ActivatedRoute
-
-    
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +47,7 @@ export class TodoComponent implements OnInit {
       this.fetchTodos();
     }
   }
-  
+
   prevPage(): void {
     if (this.skip >= this.limit) {
       this.skip -= this.limit;
@@ -60,41 +55,103 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  onCancel(): void {
-    this.editId = null;
-    this.editedTodo = '';
-  }
-  onNext(id: number): void {
-     this.router.navigate(['/dashboard/next-view', id]);
-  }
-  startEdit(todo: any): void {
-    this.editId = todo.id;
-    this.editedTodo = todo.todo;
+  openModal(todo: any): void {
+    
+    this.modalData = { ...todo };
+    this.showModal = true;
   }
 
-  saveEdit(todo: any): void {
-    const updated = {
-      todo: this.editedTodo,
-      completed: todo.completed,
-      userId: todo.userId,
-    };
-
-    this.http.put(`https://dummyjson.com/todos${todo.id}`, updated)
-      .subscribe(() => {
-        todo.todo = this.editedTodo;
-        this.editId = null; 
-        this.editedTodo = '';
-      });
+  closeModal(): void {
+    this.showModal = false;
   }
+
+  updateTodo(): void {
+    if (!this.modalData?.id) {
+      console.error('Cannot update: No ID found in modalData');
+      return;
+    }
+
+    console.log('Attempting to update todo:', this.modalData);
+
+
+    
+    this.http.patch(`https://dummyjson.com/todos/${this.modalData.id}`, {
+      todo: this.modalData.todo,
+      completed: this.modalData.completed
+    }).subscribe({
+      next: (res: any) => {
+        
+        console.log('Update successful:', res);
+
+
+        const index = this.todos.findIndex(t => t.id === this.modalData.id);
+        if (index > -1) {
+          this.todos[index] = { ...this.todos[index], ...res };
+        }
+
+        this.closeModal();
+      },
+      error: (err) => {
+        console.error('Update failed:', err);
+      }
+    });
+  }
+
   deleteTodo(id: number): void {
-    this.http.delete(`https://dummyjson.com/todos${id}`)
-      .subscribe(() => {
-        this.todos = this.todos.filter(t => t.id !== id);
-      });
+    this.http.delete(`https://dummyjson.com/todos/${id}`).subscribe(() => {
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    });
   }
- 
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   goToEdit(id: string) {
+//   console.log('Navigating with ID:', id);
+//   this.router.navigate(['/dashboard/edit', id]);
+// }
+
+  
+  
+
+
+
+
+
+
+
 
 
 

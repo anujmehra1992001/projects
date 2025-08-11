@@ -1,4 +1,4 @@
-<!-- <div class="dashboard">
+<div class="dashboard">
     <aside class="sidebar">
         <div class="container">
             <h1>Anuj Mehra</h1>
@@ -24,6 +24,12 @@
                     <a routerLink="/dashboard/sales-chart" routerLinkActive="active">sales-chart</a>
                 </li>
                 <li>
+                    <a routerLink="/dashboard/todo" routerLinkActive="active">todo</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/next-view" routerLinkActive="active">next-view</a>
+                </li>
+                <li>
                     <a routerLink="/dashboard/employee" routerLinkActive="active">employee</a>
                 </li>
                 <!--
@@ -31,7 +37,7 @@
           <a routerLink="/dashboard/layots" routerLinkActive="active">layots</a>
         </li>
         -->
-<!-- </ul>
+            </ul>
         </nav>
 
         <object data="" type=""></object>
@@ -47,14 +53,17 @@
             <router-outlet></router-outlet>
         </div>
     </section>
-</div> -->
-<div class="dashboard">
+</div>
+<!-- <div class="dashboard">
     <aside class="sidebar">
         <div class="container">
-            <h1>{{ user.name }}</h1>
-            <img [src]="user.image" alt="User Photo" width="32" height="32" />
-            <h3>DashBoard</h3>
+            <img [src]="user.image" alt="" />
+            <div>
+                <h1>{{ user.name }}</h1>
+                <h3>DashBoard</h3>
+            </div>
         </div>
+
         <p style="color: red">{{ user.name }}</p>
 
         <nav>
@@ -66,16 +75,19 @@
                 </li>
             </ul>
         </nav>
-    </aside>
+    </aside> -->
+<!-- main-content here -->
 
+
+<!-- 
     <section class="main-content">
         <header>
             <h1>Welcome to dashboard</h1>
             <button (click)="logout()">logout</button>
-        </header>
+        </header> -->
 
-        <!--  Cards Section (add this) -->
-        <div class="dashboard-cards">
+<!-- Cards Section (add this) -->
+<!-- <div class="dashboard-cards">
             <div class="card" *ngFor="let card of cards">
                 <div class="card-icon">
                     <i [class]="card.icon"></i>
@@ -86,12 +98,12 @@
                     <h2>{{ card.value }}</h2>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- Existing dynamic content -->
-        <div class="content">
+<!-- Existing dynamic content -->
+<!-- <div class="content">
             <router-outlet></router-outlet>
         </div>
     </section>
 
-</div>
+</div> -->

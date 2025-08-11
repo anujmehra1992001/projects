@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -18,9 +17,22 @@ body, html {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* Responsive Login Container */
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Login Container */
 .login-container {
   width: 100%;
   max-width: 400px;
@@ -28,6 +40,11 @@ body, html {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-5px);
 }
 
 /* Heading */
@@ -61,16 +78,21 @@ body, html {
   width: 100%;
   padding: 12px;
   font-size: 1rem;
-  border: 1px solid #999;           /* Darker border */
+  border: 1px solid #999;
   background-color: #fff;
   color: #333;
   border-radius: 6px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.input-group input:hover {
+  border-color: #6c7adf;
+  box-shadow: 0 0 8px rgba(108, 122, 223, 0.2);
 }
 
 .input-group input:focus {
   border-color: #6c7adf;
-  box-shadow: 0 0 0 3px rgba(108, 122, 223, 0.25);  /* Like Bootstrap */
+  box-shadow: 0 0 0 3px rgba(108, 122, 223, 0.25);
   outline: none;
 }
 
@@ -91,11 +113,13 @@ body, html {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .login-button:hover {
   background-color: #2d4f61;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(58, 96, 115, 0.4);
 }
 
 /* Links Below Form */
@@ -110,43 +134,25 @@ body, html {
 .login-links a {
   color: #333;
   text-decoration: none;
+  position: relative;
   transition: color 0.3s ease;
+}
+
+.login-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -2px;
+  background-color: #3a6073;
+  transition: width 0.3s;
 }
 
 .login-links a:hover {
   color: #3a6073;
 }
 
-/* 🔁 Responsive tweaks for small screens */
-@media (max-width: 480px) {
-  .login-container {
-    padding: 20px;
-  }
-
-  .login-container h2 {
-    font-size: 1.5rem;
-  }
-
-  .login-button {
-    font-size: 1rem;
-  }
-
-  .login-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
+.login-links a:hover::after {
+  width: 100%;
 }
-.blinking-text {
-  animation: blink 1s infinite;
-  font-weight: bold;
-  color: #000000; /* green */
-  font-size: 18px;
-}
-
-@keyframes blink {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
-}
-

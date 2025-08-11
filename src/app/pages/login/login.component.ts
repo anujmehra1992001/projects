@@ -25,7 +25,8 @@ export class LoginComponent {
     
     if (isUser) {
       this.errorMessage = '';
-      this.router.navigateByUrl('/dashboard');
+       this.router.navigateByUrl('/dashboard');
+      // this.router. navigateByUrl('/todo');
       
     } else {
       this.errorMessage = 'Invalid email or password. Please try again.';

@@ -1,221 +1,75 @@
-<!-- <h2 class="mb-4"> Todo List</h2>
-
-<div class="table-responsive">
-    <table class="table table-bordered table-hover border-dark">
-        <thead class="table-light border-dark">
-            <tr>
-                <th>ID</th>
-                <th>Todo</th>
-                <th>Completed</th>
-                <th>User ID</th>
-                <th>Action</th>
-                <th>Empty</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let todo of todos">
-                <td>{{ todo.id }}</td>
-
-                <!-- Todo Text or Input -->
-<!-- <td *ngIf="editId !== todo.id">{{ todo.todo }}</td>
-                <td *ngIf="editId === todo.id">
-                    <input [(ngModel)]="editedTodo" class="form-control" />
-                </td>
-
-
-                <td>
-                    <input type="checkbox" [(ngModel)]="todo.completed" [disabled]="editId !== todo.id" />
-                </td>
-
-                <td>{{ todo.userId }}</td>
-
-
-                <td>
-                    <ng-container *ngIf="editId !== todo.id">
-                        <button class="btn btn-outline-primary btn-sm" (click)="startEdit(todo)">Update</button>
-                    </ng-container>
-
-                    <ng-container *ngIf="editId === todo.id">
-                        <button class="btn btn-success btn-sm me-1" (click)="saveEdit(todo)">Save</button>
-                        <button class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-                    </ng-container>
-                </td>
-
-
-                <td>
-                    <button class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
-<!-- <div class="d-flex justify-content-between mt-3">
-    <button class="btn btn-secondary" (click)="prevPage()" [disabled]="skip === 0">Prev</button>
-    <button class="btn btn-primary" (click)="nextPage()" [disabled]="(skip + limit) >= (total || 0)">Next</button>
-</div>
-
-
-<div class="mt-3">
-    <button class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h2 class="mb-4">Todo List</h2>
-
-<div class="table-responsive">
-    <table class="table table-bordered table-hover border-dark">
-        <thead class="table-light border-dark">
-            <tr>
-                <th>ID</th>
-                <th>Todo</th>
-                <th>Completed</th>
-                <th>User ID</th>
-                <th>Action</th>
-                <th>Empty</th>
-                <th>Navigate</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let todo of todos">
-                <!-- Edit Mode -->
-                <tr *ngIf="editId === todo.id" class="bg-light">
-                    <form (ngSubmit)="saveEdit(todo)" #editForm="ngForm">
-                        <td>{{ todo.id }}</td>
-                        <td>
-                            <input type="text" [(ngModel)]="editedTodo" name="todoText" class="form-control form-control-sm" placeholder="Enter updated todo" required />
-                        </td>
-                        <td>
-                            <input type="checkbox" [(ngModel)]="todo.completed" name="completed" />
-                        </td>
-                        <td>{{ todo.userId }}</td>
-                        <td>
-                            <button type="submit" class="btn btn-success btn-sm me-1">Save</button>
-                            <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" (click)="onNext(todo.id)">Next</button>
-                        </td>
-                    </form>
-                </tr>
-
-                <!-- Normal View -->
-                <tr *ngIf="editId !== todo.id">
-                    <td>{{ todo.id }}</td>
-                    <td>{{ todo.todo }}</td>
-                    <td>
-                        <input type="checkbox" [checked]="todo.completed" disabled />
-                    </td>
-                    <td>{{ todo.userId }}</td>
-                    <td>
-                        <button class="btn btn-outline-primary btn-sm" (click)="startEdit(todo)">Update</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-danger btn-sm" (click)="deleteTodo(todo.id)">Delete</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary btn-sm" (click)="onNext(todo.id)">Next</button>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
-</div>
+<!-- Toast placeholder -->
+<div id="toast" class="toast"></div>
+
+<!-- Table -->
+<table class="todo-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Todo</th>
+            <th>Completed</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let todo of todos">
+            <td>{{ todo.id }}</td>
+            <td>{{ todo.todo }}</td>
+            <td>{{ todo.completed }}</td>
+            <td>{{ todo.userId }}</td>
+            <td>
+
+
+                <p-button label="Edit" severity="success" (click)="openModal(todo)" rounded></p-button>
+            </td>
+            <td>
+
+                <p-button icon="pi pi-trash " label="Delete" severity="danger" (click)="deleteTodo(todo.id)" outlined></p-button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <!-- Pagination -->
-<div class="d-flex justify-content-between mt-3">
-    <button class="btn btn-secondary" (click)="prevPage()" [disabled]="skip === 0">Prev</button>
-    <button class="btn btn-primary" (click)="nextPage()" [disabled]="skip + limit >= (total || 0)">Next</button>
+<div class="bottom-buttons">
+    <button class="btn btn-secondary" icon="pi pi-arrow-left" (click)="prevPage()" [disabled]="skip === 0">
+    ⬅ Prev
+  </button>
+
+
+
+    <button class="btn btn-secondary" icon="pi pi-arrow-Next" (click)="nextPage()" [disabled]="skip + limit >= total">
+    Next ➡ 
+  </button>
 </div>
 
-<!-- Cancel Button -->
-<div class="mt-3">
-    <button class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
+<!-- Modal -->
+<div class="modal" [class.show]="showModal">
+    <div class="modal-content">
+        <h3>Update Todo</h3>
+        <label>ID</label>
+        <input type="text" [(ngModel)]="modalData.id" readonly />
+
+        <label>Todo</label>
+        <input type="text" [(ngModel)]="modalData.todo" />
+
+        <label>Completed</label>
+        <input type="checkbox" [(ngModel)]="modalData.completed" />
+
+        <label>User ID</label>
+        <input type="number" [(ngModel)]="modalData.userId" />
+
+        <div class="modal-actions">
+            <!-- <button class="btn btn-secondary" (click)="closeModal()">Close</button> -->
+            <p-button label="Close" (click)="closeModal()" severity="warning" />
+            <!-- <button class="btn btn-success" (click)="updateTodo()">Update</button> -->
+            <p-button label="Update" (click)="updateTodo()" severity="success" />
+
+        </div>
+    </div>
 </div>
 
-<!-- Extra Navigate Button (optional) -->
-<!-- You can remove this if unnecessary -->
-<!-- <div class="mt-4">
-  <button class="btn btn-primary btn-sm" (click)="onNext(1)">Next</button>
-</div> -->
+<!-- <button (click)="goToEdit(todos.id)">Edit</button> -->
