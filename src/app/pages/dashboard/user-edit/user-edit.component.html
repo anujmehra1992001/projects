@@ -1,0 +1,36 @@
+<div class="edit-container" *ngIf="!loading; else loadingTpl">
+    <h2>Edit Todo</h2>
+
+    <form (ngSubmit)="updateTodo()" #editForm="ngForm">
+        <div class="form-group">
+            <label for="todo">Todo</label>
+            <input pInputText id="todo" name="todo" [(ngModel)]="todoData.todo" required placeholder="Enter todo text" />
+
+        </div>
+
+
+
+        <div class="form-group checkbox-group">
+            <p-checkbox name="completed" [(ngModel)]="todoData.completed" binary="true" inputId="completed">
+            </p-checkbox>
+            <label for="completed">Completed</label>
+        </div>
+
+
+
+        <div class="button-group">
+            <p-button label="Update" icon="pi pi-refresh" type="submit" severity="success" [disabled]="editForm.invalid">
+            </p-button>
+
+            <p-button label="add" icon="pi pi-user" type="submit" severity="help" [disabled]="editForm.invalid">
+            </p-button>
+
+            <p-button label="Cancel" icon="pi pi-times" severity="secondary" (click)="router.navigate(['/todo'])">
+            </p-button>
+        </div>
+    </form>
+</div>
+
+<ng-template #loadingTpl>
+    <p>Loading todo details...</p>
+</ng-template>
