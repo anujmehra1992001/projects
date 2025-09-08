@@ -1,7 +1,5 @@
-<!-- Toast placeholder -->
 <div id="toast" class="toast"></div>
 
-<!-- Table -->
 <table class="todo-table">
     <thead>
         <tr>
@@ -9,8 +7,7 @@
             <th>Todo</th>
             <th>Completed</th>
             <th>User ID</th>
-            <th>Action</th>
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -20,56 +17,25 @@
             <td>{{ todo.todo }}</td>
             <td>{{ todo.completed }}</td>
             <td>{{ todo.userId }}</td>
-            <td>
+            <td class="action-buttons">
+                <p-button icon="pi pi-user" label="Edit" severity="success" (click)="goToEdit(todo.id)" outlined>
+                </p-button>
 
-
-                <p-button label="Edit" severity="success" (click)="openModal(todo)" rounded></p-button>
-            </td>
-            <td>
-
-                <p-button icon="pi pi-trash " label="Delete" severity="danger" (click)="deleteTodo(todo.id)" outlined></p-button>
+                <!-- <p-button icon="pi pi-trash" label="Delete" severity="danger" (click)="deleteTodo(todo.id)" outlined>
+                </p-button> -->
+                <p-button label="Delete" severity="danger" (onClick)="confirm2(todo.id)" [outlined]="true">
+                </p-button>
             </td>
         </tr>
     </tbody>
 </table>
 
-<!-- Pagination -->
 <div class="bottom-buttons">
     <button class="btn btn-secondary" icon="pi pi-arrow-left" (click)="prevPage()" [disabled]="skip === 0">
     ⬅ Prev
   </button>
 
-
-
     <button class="btn btn-secondary" icon="pi pi-arrow-Next" (click)="nextPage()" [disabled]="skip + limit >= total">
-    Next ➡ 
+    Next ➡
   </button>
 </div>
-
-<!-- Modal -->
-<div class="modal" [class.show]="showModal">
-    <div class="modal-content">
-        <h3>Update Todo</h3>
-        <label>ID</label>
-        <input type="text" [(ngModel)]="modalData.id" readonly />
-
-        <label>Todo</label>
-        <input type="text" [(ngModel)]="modalData.todo" />
-
-        <label>Completed</label>
-        <input type="checkbox" [(ngModel)]="modalData.completed" />
-
-        <label>User ID</label>
-        <input type="number" [(ngModel)]="modalData.userId" />
-
-        <div class="modal-actions">
-            <!-- <button class="btn btn-secondary" (click)="closeModal()">Close</button> -->
-            <p-button label="Close" (click)="closeModal()" severity="warning" />
-            <!-- <button class="btn btn-success" (click)="updateTodo()">Update</button> -->
-            <p-button label="Update" (click)="updateTodo()" severity="success" />
-
-        </div>
-    </div>
-</div>
-
-<!-- <button (click)="goToEdit(todos.id)">Edit</button> -->

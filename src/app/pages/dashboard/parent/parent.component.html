@@ -1,0 +1,27 @@
+<div style="border:2px solid blue; padding:15px; margin:10px;">
+    <h2> Parent Component</h2>
+
+    <!-- Add User Form  -->
+    <form #userForm="ngForm" (ngSubmit)="addUser(userForm.value); userForm.reset()">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" ngModel required>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" ngModel required>
+        </div>
+        <div>
+            <label>Age:</label>
+            <input type="number" name="age" ngModel required min="">
+        </div>
+        <button type="submit" [disabled]="!userForm.valid">Add User</button>
+    </form>
+
+    <p><b>Child se aaya message:</b> {{ childMessage }}</p>
+
+    <!-- Parent → Child data (user list) -->
+    <app-child [userList]="users" (deleteEvent)="deleteUser($event)" (messageEvent)="receiveMessage($event)">
+
+    </app-child>
+</div>

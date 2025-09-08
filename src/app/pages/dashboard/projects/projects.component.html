@@ -1,42 +1,41 @@
 <!-- Filters -->
-<!-- Filters -->
-<div style="margin-bottom: 16px;" *ngIf="!isLoading">
-    <input type="text" [(ngModel)]="searchText" placeholder="Search products" style="padding: 6px; margin-right: 8px;" />
-    <select [(ngModel)]="sortOption" style="padding: 6px;">
-    <option value="">Sort By</option>
-    <option value="priceAsc">Price: Low to High</option>
-    <option value="priceDesc">Price: High to Low</option>
-  </select>
+<div class="p-d-flex p-ai-center p-mb-3" *ngIf="!isLoading">
+    <!-- Search -->
+    <input pInputText type="text" [(ngModel)]="searchText" placeholder="Search products" class="p-mr-3" />
+
+    <!-- Sorting with Listbox -->
+    <p-listbox [options]="sortOptions" [(ngModel)]="sortOption" optionLabel="label" optionValue="value" (onChange)="currentPage = 1">
+    </p-listbox>
 </div>
 
 <!-- Loading Spinner -->
-<div *ngIf="isLoading" class="loader-container">
-    <div class="loader"></div>
-</div>
+<p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
 
-<!-- Table -->
-<table *ngIf="!isLoading && products.length > 0" class="product-table" border="1" cellpadding="8">
-    <thead>
+<!-- PrimeNG Table -->
+<p-table *ngIf="!isLoading && products.length > 0" [value]="filteredProducts" responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
         <tr>
             <th>Image</th>
             <th>Title</th>
             <th>Price ($)</th>
             <th>Category</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of filteredProducts">
+    </ng-template>
+
+    <ng-template pTemplate="body" let-product>
+        <tr>
             <td><img [src]="product.image" alt="product" height="50" /></td>
             <td>{{ product.title }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.category }}</td>
         </tr>
-    </tbody>
-</table>
+    </ng-template>
+</p-table>
 
 <!-- Pagination -->
-<div *ngIf="!isLoading && totalPages > 1" style="margin-top: 16px;">
-    <button (click)="changePage(-1)" [disabled]="currentPage === 1">Previous</button>
+<div *ngIf="!isLoading && totalPages > 1" class="p-d-flex p-ai-center p-jc-between p-mt-3">
+    <button pButton type="button" label="Previous" (click)="changePage(-1)" [disabled]="currentPage === 1"></button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button (click)="changePage(1)" [disabled]="currentPage === totalPages">Next</button>
+    <button pButton type="button" label="Next" (click)="changePage(1)" [disabled]="currentPage === totalPages"></button>
 </div>

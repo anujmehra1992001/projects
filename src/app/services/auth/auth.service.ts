@@ -16,6 +16,7 @@ export class AuthService {
 
   private currentUser: User | null = null;
   private router = inject(Router);
+  update: any;
 
   constructor() {}
 
@@ -35,8 +36,6 @@ export class AuthService {
     this.navigateByUrl('/login');
   }
   
-  
-
   getCurrentUser(): User | null {
     if (!this.currentUser) {
       const userData = localStorage.getItem('currentUser');

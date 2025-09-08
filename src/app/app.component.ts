@@ -17,6 +17,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'your-app-title'; // Or whatever is appropriate
-
+  title = 'your-app-title'; 
 }

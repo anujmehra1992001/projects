@@ -3,22 +3,26 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
-  imports: [FormsModule, CommonModule] 
+  imports: [FormsModule, CommonModule,ButtonModule] 
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
-  selectedAction: string = ''; // ✅ Add this to fix "selectedAction not defined"
+  selectedAction: string = ''; 
+
 
   private auth = inject(AuthService);
   private router = inject(Router);
+  location: any;
 
   onSubmit(): void {
     const isUser = this.auth.login(this.email, this.password);
@@ -35,12 +39,21 @@ export class LoginComponent {
 
    onForgotClick() {
     this.router.navigate(['/forgot-password']);
+    this.location.goback();
+   
+  
   }
-
+  
   onSignUpClick() {
     this.selectedAction = 'signup';
     console.log('User clicked Sign Up');
   }
+   
+  // updateuser(){
+  //   console.log('just cheak ');
+  // }
+
+
   
 }
 

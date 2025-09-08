@@ -18,31 +18,35 @@
 <!-- <a router[routerLink]="['/''about']"
 >about</a> -->
 <!-- Login Form -->
-<h2 style="text-align: center; margin-top: 30px;">Login</h2>
+<h2 class="p-text-center p-mt-3">Login</h2>
 
-<form (ngSubmit)="login()" style="
-    width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #f90303;
-    border-radius: 2px;
-    background-color: #f9f9f9;
-  ">
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required style="display: block; width: 100%; margin-bottom: 10px; padding: 8px" />
+<form (ngSubmit)="login()" class="p-fluid" style="max-width: 350px; margin: 0 auto;">
 
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required style="display: block; width: 100%; margin-bottom: 10px; padding: 8px" />
+    <!-- Email -->
+    <div class="p-field p-mb-3">
+        <label for="email">Email</label>
+        <input id="email" type="email" pInputText [(ngModel)]="email" name="email" placeholder="Enter email" required />
+    </div>
 
-    <button type="submit" style="
-      width: 100%;
-      padding: 10px;
-      background-color: #e03003;
-      color: rgb(16, 15, 15);
-      border: none;
-      border-radius: 4px;
-    ">
-    Login
-  </button>
+    <!-- Password -->
+    <div class="p-field p-mb-3">
+        <label for="password">Password</label>
+        <p-password id="password" [(ngModel)]="password" name="password" placeholder="Enter password" required="false" toggleMask="true">
+        </p-password>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="p-field">
+        <button pButton type="submit" label="Login" class="p-button-danger w-full"></button>
+    </div>
 </form>
+
+
+
+<h1> {{ name}}</h1>
+
+<button (click)="onlciick()">touch me </button>
+
 
 <!-- Optional Message Below -->
 <!--
@@ -50,3 +54,12 @@
   {{ message }}
 </p>
 -->
+
+<ul>
+    <li *ngFor="let x of student">
+        {{student}}
+
+
+
+    </li>
+</ul>

@@ -2,11 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ListboxModule } from 'primeng/listbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ListboxModule,
+    InputTextModule,
+    TableModule,
+    ProgressSpinnerModule
+  ],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.less']
 })
@@ -17,6 +29,12 @@ export class ProjectsComponent implements OnInit {
   itemsPerPage: number = 4;
   products: any[] = [];
   isLoading: boolean = true;
+
+  // 🔹 Sorting options for Listbox
+  sortOptions = [
+    { label: 'Price: Low to High', value: 'priceAsc' },
+    { label: 'Price: High to Low', value: 'priceDesc' }
+  ];
 
   constructor(private http: HttpClient) {}
 
@@ -34,21 +52,25 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  // 🔹 Filtering + Sorting + Pagination
   get filteredProducts(): any[] {
     let filtered = [...this.products];
 
+    // Search
     if (this.searchText.trim()) {
       filtered = filtered.filter(product =>
         product.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
 
+    // Sorting
     if (this.sortOption === 'priceAsc') {
       filtered.sort((a, b) => a.price - b.price);
     } else if (this.sortOption === 'priceDesc') {
       filtered.sort((a, b) => b.price - a.price);
     }
 
+    // Pagination
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return filtered.slice(start, start + this.itemsPerPage);
   }

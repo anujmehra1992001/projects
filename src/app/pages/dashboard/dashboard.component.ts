@@ -14,9 +14,10 @@ export class DashboardComponent {
   private auth= inject(AuthService);
   logout(): void  {
      this.auth.logout();
-  
+
 
   }
+  
 
  }
 

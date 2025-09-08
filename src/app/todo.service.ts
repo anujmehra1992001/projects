@@ -1,29 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TodoService {
   private apiUrl = 'https://dummyjson.com/todos';
 
+  
+  private todosSubject = new BehaviorSubject<any[]>([]);
+  todos$ = this.todosSubject.asObservable();
+
   constructor(private http: HttpClient) {}
 
-  updateTodo(id: number, completed: boolean) {
-    return this.http.put(`${this.apiUrl}/${id}`, { completed });
+  
+  fetchTodos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      tap((res) => {
+        this.todosSubject.next(res.todos);
+      })
+    );
   }
 
-  deleteTodo(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  
+  getTodoById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
-  getPaginatedTodos(limit: number, skip: number) {
-  return this.http.get(`https://dummyjson.com/todos?limit=${limit}&skip=${skip}`);
+
+  
+  updateTodo(id: number, data: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}`, data).pipe(
+      tap((updatedTodo: any) => {
+        const currentTodos = this.todosSubject.value;
+        const index = currentTodos.findIndex(t => t.id === id);
+        if (index > -1) {
+          currentTodos[index] = { ...currentTodos[index], ...updatedTodo };
+          this.todosSubject.next([...currentTodos]);
+        }
+      })
+    );
+  }
+
+  
+  deleteTodo(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      tap(() => {
+        const currentTodos = this.todosSubject.value.filter(t => t.id !== id);
+        this.todosSubject.next(currentTodos);
+      })
+    );
+  }
 }
-
-// updateTodo(id: number, updatedTodo: any) {
-//   return this.http.put(`http://localhost:3000/api/roles/${id}`, updatedTodo);
-// }
-
-}
-

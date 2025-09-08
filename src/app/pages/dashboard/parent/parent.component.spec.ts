@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NextViewComponent } from './next-view.component';
+import { ParentComponent } from './parent.component';
 
-describe('NextViewComponent', () => {
-  let component: NextViewComponent;
-  let fixture: ComponentFixture<NextViewComponent>;
+describe('ParentComponent', () => {
+  let component: ParentComponent;
+  let fixture: ComponentFixture<ParentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NextViewComponent]
+      imports: [ParentComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NextViewComponent);
+    fixture = TestBed.createComponent(ParentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

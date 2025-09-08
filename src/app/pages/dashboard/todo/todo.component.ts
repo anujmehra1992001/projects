@@ -4,24 +4,26 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet, ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonModule, HttpClientModule, RouterModule, RouterOutlet, RouterLinkActive
-     
+  imports: [CommonModule, FormsModule, ButtonModule, HttpClientModule, RouterModule, RouterOutlet,TableModule,
   ],
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.less']
+
 })
 export class TodoComponent implements OnInit {
-  todos: any[] = [];
+  todos: any[] = [
+    
+  ];
   skip = 0;
   limit = 5;
   total = 1;
-
-  showModal = false;
-  modalData = { id: 0, todo: '', completed: false, userId: 0 };
+  
 
   constructor(
     private http: HttpClient,
@@ -54,54 +56,31 @@ export class TodoComponent implements OnInit {
       this.fetchTodos();
     }
   }
-
-  openModal(todo: any): void {
-    
-    this.modalData = { ...todo };
-    this.showModal = true;
-  }
-
-  closeModal(): void {
-    this.showModal = false;
-  }
-
-  updateTodo(): void {
-    if (!this.modalData?.id) {
-      console.error('Cannot update: No ID found in modalData');
-      return;
-    }
-
-    console.log('Attempting to update todo:', this.modalData);
-
-
-    
-    this.http.patch(`https://dummyjson.com/todos/${this.modalData.id}`, {
-      todo: this.modalData.todo,
-      completed: this.modalData.completed
-    }).subscribe({
-      next: (res: any) => {
-        
-        console.log('Update successful:', res);
-
-
-        const index = this.todos.findIndex(t => t.id === this.modalData.id);
-        if (index > -1) {
-          this.todos[index] = { ...this.todos[index], ...res };
-        }
-
-        this.closeModal();
-      },
-      error: (err) => {
-        console.error('Update failed:', err);
+   deleteTodo(id: number) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      this.http.delete(`https://dummyjson.com/todos/${id}`)
+        .subscribe(() => {
+          this.todos = this.todos.filter(todo => todo.id !== id);
+          alert('Todo deleted successfully!');
+        });}
+      
       }
-    });
-  }
+   
 
-  deleteTodo(id: number): void {
-    this.http.delete(`https://dummyjson.com/todos/${id}`).subscribe(() => {
-      this.todos = this.todos.filter(todo => todo.id !== id);
-    });
+
+goToEdit(id: number) {
+this.router.navigate(['/edit', id]); debugger;
+
+
+}
+
+confirm2(id: number) {
+  if (confirm("Are you sure you want to delete?")) {
+    this.deleteTodo(id);
+
   }
+}
+
 }
 
 
@@ -138,6 +117,49 @@ export class TodoComponent implements OnInit {
 
 
 
+
+
+
+
+
+
+
+
+
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function addtodo() {
+  throw new Error('Function not implemented.');
+}
 //   goToEdit(id: string) {
 //   console.log('Navigating with ID:', id);
 //   this.router.navigate(['/dashboard/edit', id]);

@@ -17,8 +17,7 @@ export const TokenInterceptor: HttpInterceptorFn = (
 ) => {
   const token = localStorage.getItem('token');
   const router = inject(Router);
-  const loaderService = inject(LoaderService); // ✅ Inject loader service
-
+  const loaderService = inject(LoaderService); 
   const modifiedReq = token
     ? req.clone({
         setHeaders: {
@@ -29,20 +28,19 @@ export const TokenInterceptor: HttpInterceptorFn = (
 
   const startTime = Date.now();
 
-  // ✅ Start loader before request
   loaderService.show();
 
   return next(modifiedReq).pipe(
     tap((event) => {
       if (event instanceof HttpResponse) {
         const elapsedTime = Date.now() - startTime;
-        console.log(`✅ ${req.url} responded in ${elapsedTime}ms`);
+        console.log(` ${req.url} responded in ${elapsedTime}ms`);
         localStorage.setItem('lastResponse', JSON.stringify(event.body));
       }
     }),
 
     catchError((error: HttpErrorResponse) => {
-      console.error('❌ API Error caught by interceptor:', {
+      console.error(' API Error caught by interceptor:', {
         status: error.status,
         message: error.message,
         url: req.url,
@@ -56,7 +54,7 @@ export const TokenInterceptor: HttpInterceptorFn = (
       return throwError(() => error);
     }),
 
-    // ✅ This finalize block was causing the error – now fixed!
+    //  This finalize block was causing the error – now fixed!
     finalize(() => {
       loaderService.hide();
     })

@@ -2,18 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { catchError, map, of } from 'rxjs';
+
+interface Employee {
+  id: number;
+  employee_name: string;
+  employee_salary: number;
+  employee_age: number;
+  profile_image: string;
+}
+
+interface ApiResponse {
+  status: string;
+  data: Employee[];
+}
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule,],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.less']
 })
-
 export class SettingsComponent implements OnInit {
-  employees: any[] = [];
-  filteredEmployees: any[] = [];
+  employees: Employee[] = [];
+  filteredEmployees: Employee[] = [];
 
   searchText: string = '';
   sortOption: string = '';
@@ -28,23 +41,35 @@ export class SettingsComponent implements OnInit {
   }
 
   loadEmployees() {
-    this.http.get<any>('https://dummy.restapiexample.com/api/v1/employees')
-      .subscribe((res) => {
-        this.employees = res.data;
-        this.applyFilters();
-      });
+    this.http.get<ApiResponse>('https://dummy.restapiexample.com/api/v1/employees').pipe(
+     
+      map(res => res.data),
+
+      
+      map((employees: Employee[]) =>
+        employees
+          .filter(e => e.employee_salary > 200000) 
+          .map(e => ({ ...e, employee_name: e.employee_name.toLowerCase() })) 
+         
+      ),
+   
+      catchError(err => {
+        console.error('API error:', err);
+        return of([]); 
+      })
+
+    ).subscribe((filteredEmployees: Employee[]) => {
+      this.employees = filteredEmployees;
+      this.applyFilters();
+    });
   }
 
   applyFilters() {
-    
     this.filteredEmployees = this.employees.filter(emp =>
       emp.employee_name.toLowerCase().includes(this.searchText.toLowerCase())
     );
 
     this.sortEmployees();
-    this.nextPage();
-    
-    
     this.currentPage = 1;
   }
 
@@ -64,8 +89,8 @@ export class SettingsComponent implements OnInit {
         break;
     }
   }
-  
-  paginatedEmployees(): any[] {
+
+  paginatedEmployees(): Employee[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredEmployees.slice(start, start + this.itemsPerPage);
   }
@@ -82,8 +107,3 @@ export class SettingsComponent implements OnInit {
     if (this.currentPage > 1) this.currentPage--;
   }
 }
-
-function user() {
-  throw new Error('Function not implemented.');
-}
-

@@ -65,3 +65,86 @@
 //     });
 //   }
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// parent.component.ts
+import { Component } from '@angular/core';
+import { ChildComponent } from '../child/child.component';
+
+@Component({
+  selector: 'app-parent',
+  standalone: true,
+  imports: [ChildComponent],
+  template: `
+    <h2>👨 Parent Component</h2>
+
+    <!-- Input: Parent → Child -->
+    <app-child [childMessage]="parentMessage" 
+               (messageEvent)="receiveMessage($event)">
+    </app-child>
+
+    <p>📩 Message from Child: {{ childMessage }}</p>
+
+    <button (click)="changeMessage()">Change Parent Message</button>
+  `
+})
+export class ParentComponent {
+  parentMessage = "Hello from Parent!";
+  childMessage = "";
+
+  changeMessage() {
+    this.parentMessage = "Parent Message Updated!";
+  }
+
+  receiveMessage(msg: string) {
+    this.childMessage = msg;
+  }
+}
+
+
+
+
+
+
+
+
+// // child.component.ts
+// import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+// @Component({
+//   selector: 'app-child',
+//   standalone: true,
+//   template: `
+//     <h3>👶 Child Component</h3>
+//     <p>Message from Parent: {{ childMessage }}</p>
+
+//     <button (click)="sendMessage()">Send Message to Parent</button>
+//   `
+// })
+// export class ChildComponent {
+//   // Parent → Child
+//   @Input() childMessage!: string;
+
+//   // Child → Parent
+//   @Output() messageEvent = new EventEmitter<string>();
+
+//   sendMessage() {
+//     this.messageEvent.emit("Hello Parent, from Child!");
+//   }
+// }
+
+
+
