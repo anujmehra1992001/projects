@@ -3,31 +3,30 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class SharedService {
-  public formData = new BehaviorSubject<any>(null);
+  private formData = new BehaviorSubject<any>(null);
   currentData = this.formData.asObservable();
 
-  
-  private childAction = new Subject<string>();
+
+  private childAction = new Subject<any>();
   childAction$ = this.childAction.asObservable();
+
   
   setData(data: any) {
     this.formData.next(data);
   }
 
-  sendAction(action: string) {
-    this.childAction.next(action);
-    
-  }
-
-   updated(){
-    this.currentData.subscribe
-    this.childAction.asObservable.apply
   
+  sendAction(action: { type: string; payload?: any }) {
+    this.childAction.next(action);
   }
 
- delete(){
-  this.formData.next(this.delete);
-  this.delete
- }
+  update(){  
+    this.currentData.subscribe
+    this.childAction.asObservable.apply
 
+  }
+  delete(){
+    this,this.formData.next
+    this.delete
+  }
 }
