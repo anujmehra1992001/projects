@@ -1,0 +1,43 @@
+<!-- <p>dropdown works!</p>
+<p-floatlabel>
+    <p-autocomplete [(ngModel)]="value1" [suggestions]="items" (completeMethod)="search($event)" inputId="over_label" />
+    <label for="over_label">Over Label</label>
+</p-floatlabel>
+
+<p-floatlabel variant="in">
+    <p-autocomplete [(ngModel)]="value2" [suggestions]="items" (completeMethod)="search($event)" inputId="in_label" />
+    <label for="in_label">In Label</label>
+</p-floatlabel>
+
+<p-floatlabel variant="on">
+    <p-autocomplete [(ngModel)]="value3" [suggestions]="items" (completeMethod)="search($event)" inputId="on_label" />
+    <label for="on_label">On Label</label>
+</p-floatlabel>
+
+
+ -->
+
+
+
+
+<label>Country:</label>
+<select [(ngModel)]="selectedCountry()" (change)="onCountryChange()">
+  <option value="">Select Country</option>
+  <option *ngFor="let country of countries" [value]="country.code">
+    {{ country.name }}
+  </option>
+</select>
+
+<br><br>
+
+<label>State:</label>
+<select [(ngModel)]="selectedState()" [disabled]="!states.length">
+  <option value="">Select State</option>
+  <option *ngFor="let state of states" [value]="state.code">
+    {{ state.name }}
+  </option>
+</select>
+
+<br><br>
+
+<p>Selected: {{ selectedCountry }} - {{ selectedState }}</p>

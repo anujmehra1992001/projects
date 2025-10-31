@@ -1,0 +1,19 @@
+<p>user-list works!</p>
+<div>
+    <h2>User Dashboard</h2>
+
+    <input type="text" placeholder="Search users" (input)="userService.searchQuery.set($any($event.target).value)" />
+
+    <div *ngIf="userService.loading()">Loading...</div>
+    <div *ngIf="userService.error()">{{ userService.error() }}</div>
+
+    <ul>
+        <li *ngFor="let user of userService.filteredUsers()">
+            {{ user.name }} {{user.cityname}}
+
+
+        </li>
+    </ul>
+
+    <p>Total Users: {{ filteredCount() }}</p>
+</div>

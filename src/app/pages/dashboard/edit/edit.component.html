@@ -1,0 +1,23 @@
+<p>edit works!</p>
+<div *ngIf="todoData">
+    <p><strong>Old Todo:</strong> {{ todoData.todo }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label>Todo Name:</label>
+        <input type="text" formControlName="name" /><br />
+
+        <label>Status:</label>
+        <select formControlName="status">
+      <option value="true">Completed</option>
+      <option value="false">Pending</option>
+    </select><br /><br />
+
+
+        <button type="submit">Update Todo</button>
+        <button type="submit" style="margin: 2rem; background-color: darkgreen; color: aliceblue;">deleteTodo</button>
+        <button style="display: flex; margin-top: 5px;  color: rgb(0, 0, 0); background-color: darkgoldenrod;
+         width: 125px; height: 40px; border-radius: 10%; justify-content: center; align-items: center;" type="reset">reset</button>
+
+    </form>
+
+</div><object data="" type=""></object>
